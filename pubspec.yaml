@@ -23,7 +23,12 @@ dependencies:
   firebase_storage: ^11.0.6
   datetime_picker_formfield: ^2.0.1
   iconfont: ^2.0.0
+  flutter_launcher_icons: ^0.11.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/iconapp/list.png"
 
 
 dev_dependencies:
@@ -37,6 +42,7 @@ flutter:
   assets:
     - assets/
     - assets/imgs/
+    - assets/iconapp/
     - .env
   fonts:
     - family: Lato
