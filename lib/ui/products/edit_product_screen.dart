@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -26,7 +24,7 @@ class EditProductScreen extends StatefulWidget {
         price: 0,
         description: '',
         imageUrl:
-            'https://vn-live-01.slatic.net/p/204f7963856e852ca178ef6f184f17be.jpg',
+            '',
         laisuat: 2,
         name: '',
         phone: 0,

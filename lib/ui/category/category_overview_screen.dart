@@ -1,230 +1,76 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:myshop/models/product.dart';
-import 'package:myshop/ui/statistical/pro_fit_screen.dart';
-import 'package:myshop/ui/statistical/user_products_screen.dart';
 
-import 'category_list_tile.dart';
+import '../../models/category.dart';
+import '../products/products_overview_screen.dart';
+import 'Utils.dart';
 import 'category_screen.dart';
 
-
-
-
-
-class categoryviewScreen extends StatefulWidget {
-  static const routeName = '/statistical';
-  const categoryviewScreen({super.key});
-  @override
-  State<categoryviewScreen> createState() => _categoryviewScreen();
-}
-
-class _categoryviewScreen extends State<categoryviewScreen> {
- 
-
+class CategoryListPage extends StatelessWidget {
+  List<Category> categories = Utils.getMockedCategories();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Thống kê',style: TextStyle(color: Colors.white),),
-          backgroundColor: Colors.amber,
-          centerTitle: true,
-          
-        ),
-        // drawer: const AppDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0), 
-          child: GridView(
-            padding: const EdgeInsets.only(top: 120),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 10,
+      appBar: AppBar(),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => const categoryScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(15),
+                      height: 130,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                              child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                                'assets/imgs/${categories[index].imgName}.jpg',
+                                fit: BoxFit.cover),
+                          )),
+                          Container(
+                            height: 200,
+                            width: 400,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  categories[index].title,
+                                  style: const TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 30,
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.w900,
+                                      shadows: [
+                                        Shadow(
+                                            color: Colors.black87,
+                                            offset: Offset(2, 1),
+                                            blurRadius: 10)
+                                      ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-            
-            children: [
-              GridTile(
-                child: GestureDetector(
-                  onTap: () {
-                   Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (ctx) =>   const categoryScreen(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.amberAccent),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.attach_money_rounded,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Doanh thu",
-                          style: TextStyle(color: Colors.white, fontSize: 20)
-                          ,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              GridTile(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (ctx) => const UserProductsScreen(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.blueAccent),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.format_list_bulleted_rounded,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Tổng ký gửi",
-                          style: TextStyle(color: Colors.white, fontSize: 20)
-                          ,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              GridTile(
-                child: GestureDetector(
-                  onTap: () {
-                    
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (ctx) => const 
-                    //   ),
-                    // );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.deepOrangeAccent),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.priority_high_outlined,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Đến kỳ hạn",
-                          style: TextStyle(color: Colors.white, fontSize: 20)
-                          ,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              GridTile(
-                child: GestureDetector(
-                  onTap: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (ctx) => const QuaKyHanScreen(),
-                    //   ),
-                    // );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.redAccent),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.warning_amber_outlined,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Quá kỳ hạn",
-                          style: TextStyle(color: Colors.white, fontSize: 20)
-                          ,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ));
+          ],
+        ),
+      ),
+    );
   }
-
-  // Widget buildShoppingCartIcon() {
-  //   return Consumer<CartManager>(
-  //     builder: (ctx, cartManager, child) {
-  //       return TopRightBadge(
-  //         data: cartManager.productCount,
-  //         child: IconButton(
-  //           icon: const Icon(
-  //             Icons.shopping_cart,
-  //           ),
-  //           onPressed: () {
-  //             Navigator.of(ctx).pushNamed(CartScreen.routeName);
-  //           },
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // Widget buildProductFilterMenu() {
-  //   return PopupMenuButton(
-  //       onSelected: (FilterOptions selectedValue) {
-  //         if (selectedValue == FilterOptions.favorites) {
-  //           _showOnlyFavorites.value = true;
-  //         } else {
-  //           _showOnlyFavorites.value = false;
-  //         }
-  //       },
-  //       icon: const Icon(
-  //         Icons.more_vert,
-  //       ),
-  //       itemBuilder: (ctx) => [
-  //             const PopupMenuItem(
-  //               value: FilterOptions.favorites,
-  //               child: Text("Only favorites"),
-  //             ),
-  //             const PopupMenuItem(
-  //               value: FilterOptions.all,
-  //               child: Text('Show All'),
-  //             )
-  //           ]);
-  // }
 }

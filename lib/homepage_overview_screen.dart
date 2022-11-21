@@ -146,7 +146,7 @@ class _HomepageOverviewScreenState extends State<HomepageOverviewScreen> {
                 onTap: () {
                  Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (ctx) => const categoryviewScreen(),
+                      builder: (ctx) =>  CategoryListPage(),
                     ),
                   );
                 },

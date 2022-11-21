@@ -22,7 +22,7 @@ class ProductGridTile extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     ProductDetailScreen.routeName,
-                    arguments: product.id,
+                    arguments: product.id ,
                   );
                 },
                 child: Image.network(

@@ -49,28 +49,10 @@ class categoryListTile extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: (){
-             buildKyHanListView();
-            },
+          
           )
         ]
       ],
     );
-  }
-
- Widget buildKyHanListView() {
-    return Consumer<ProductsManager>(builder: (ctx, productsManager, child) {
-      return ListView.builder(
-        itemCount: productsManager.itemCount,
-        itemBuilder: (ctx, i) => Column(
-          children: [
-            categoryListTile(
-              productsManager.items[i],
-            ),
-            const Divider(),
-          ],
-        ),
-      );
-    });
   }
 }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../models/category.dart';
 import '../../models/product.dart';
 import '../products/products_manager.dart';
+import 'Utils.dart';
 import 'category_list_tile.dart';
 
 class categoryScreen extends StatelessWidget {
   static const routeName = '/danhmuc';
 
   const categoryScreen({super.key});
+  
 
   Future<void> _refreshProducts(BuildContext context) async {
     await context.read<ProductsManager>().fetchProducts(true);
@@ -15,7 +18,6 @@ class categoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Danh mục'),
@@ -50,12 +52,12 @@ class categoryScreen extends StatelessWidget {
 
   Widget buildKyHanListView() {
     return Consumer<ProductsManager>(builder: (ctx, productsManager, child) {
-      String b = 'Vang';
+      String a = 'vang';
       return ListView.builder(
         itemCount: productsManager.itemCount,
         itemBuilder: (ctx, i) => Column(
           children: [
-            if ( b == b) ...[
+            if ( a == a ) ...[
               categoryListTile(
                 productsManager.items[i],
               ),
